@@ -1,0 +1,21 @@
+name: TestConcurrentScoreForOpenHarmony
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:  
+      - name: Get slsa-verify
+        run: go install github.com/slsa-framework/slsa-verifier/v2/cli/slsa-verifier@v2.3.0
+      - name: Verified
+        run: |
+          artifact_url=https://github.com/LikeFirstMeet/sbom-service/releases/download/v1.0.0/sbom-service-1.0.0.war
+          artifact_sbom=https://github.com/LikeFirstMeet/sbom-service/releases/download/v1.0.0/sbom-service-1.0.0.war.intoto.jsonl
+          wget $artifact_url
+          wget $artifact_sbom
+          artifact_name=sbom-service-1.0.0.war
+          artifact_sbom_name=sbom-service-1.0.0.war.intoto.jsonl
+          artifact_host=github.com/LikeFirstMeet/sbom-service
+          artifact_tag=v1.0.0
+          slsa-verifier verify-artifact $artifact_name --provenance-path $artifact_sbom_name --source-uri $artifact_host --source-tag $artifact_tag
