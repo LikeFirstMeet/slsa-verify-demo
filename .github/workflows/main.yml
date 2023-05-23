@@ -11,7 +11,7 @@ jobs:
       - name: Verified
         run: |
           go env
-          export PATH=$PATH:/root/go/bin
+          export PATH=$PATH:/home/runner/go/bin
           artifact_url=https://github.com/LikeFirstMeet/sbom-service/releases/download/v1.0.0/sbom-service-1.0.0.war
           artifact_sbom=https://github.com/LikeFirstMeet/sbom-service/releases/download/v1.0.0/sbom-service-1.0.0.war.intoto.jsonl
           wget $artifact_url
