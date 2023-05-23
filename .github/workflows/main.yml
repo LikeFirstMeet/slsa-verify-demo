@@ -1,4 +1,4 @@
-name: TestConcurrentScoreForOpenHarmony
+name: slsa-verify-demo
 on:
   workflow_dispatch:
 
